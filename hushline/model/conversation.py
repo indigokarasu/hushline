@@ -92,7 +92,6 @@ class ConversationParticipant(Model):
         db.Boolean,
         nullable=False,
         default=False,
-        server_default=text("false"),
     )
 
     conversation: Mapped["Conversation"] = relationship(back_populates="participants")
