@@ -1,18 +1,17 @@
 from __future__ import annotations
 
 import json
-import unicodedata
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from unidecode import unidecode
 
 from hushline.model.directory_listing_geography import (
     DirectoryListingGeography,
     build_directory_geography,
 )
+from hushline.text import sort_key as _sort_key
 
 
 @dataclass(frozen=True)
@@ -51,11 +50,6 @@ class SecureDropDirectoryListing:
     @property
     def location(self) -> str:
         return self.geography.location
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
 
 
 def _seed_path() -> Path:
