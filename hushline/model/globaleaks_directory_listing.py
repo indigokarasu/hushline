@@ -1,19 +1,18 @@
 from __future__ import annotations
 
 import json
-import unicodedata
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from unidecode import unidecode
 
 from hushline.model.directory_listing_geography import (
     DirectoryListingGeography,
     build_directory_geography,
 )
+from hushline.text import sort_key as _sort_key
 
 
 @dataclass(frozen=True)
@@ -54,11 +53,6 @@ class GlobaLeaksDirectoryListing:
     def has_onion_submission(self) -> bool:
         values = (self.submission_url, self.website, self.host)
         return any(".onion" in value.casefold() for value in values if value)
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
 
 
 def _seed_path() -> Path:

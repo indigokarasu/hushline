@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import re
-import unicodedata
 from typing import Mapping, Protocol, Sequence
 from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from unidecode import unidecode
+
+from hushline.text import slugify as _slugify, sort_key as _sort_key
 
 GLOBALEAKS_SOURCE_LABEL = "GlobaLeaks use case page"
 GLOBALEAKS_SOURCE_URL = "https://www.globaleaks.org/usecases/"
@@ -83,16 +83,6 @@ class _SessionLike(Protocol):
         timeout: float,
         headers: dict[str, str],
     ) -> _ResponseLike: ...
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
-
-
-def _slugify(value: str) -> str:
-    normalized = _sort_key(value)
-    return re.sub(r"[^a-z0-9]+", "-", normalized).strip("-")
 
 
 def _normalize_split_string(value: str) -> list[str]:

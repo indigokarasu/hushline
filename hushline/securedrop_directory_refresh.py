@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 import requests
 from unidecode import unidecode
 
+from hushline.text import slugify as _slugify, sort_key as _sort_key
+
 SECUREDROP_DIRECTORY_API_URL = "https://securedrop.org/api/v1/directory/"
 SECUREDROP_SOURCE_LABEL = "SecureDrop directory"
 SECUREDROP_SOURCE_URL = SECUREDROP_DIRECTORY_API_URL
@@ -42,16 +44,6 @@ class SecureDropRefreshSummary:
     @property
     def updated_count(self) -> int:
         return len(self.updated_rows)
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
-
-
-def _slugify(value: str) -> str:
-    normalized = _sort_key(value)
-    return re.sub(r"[^a-z0-9]+", "-", normalized).strip("-")
 
 
 def _normalize_string_list(value: object) -> list[str]:

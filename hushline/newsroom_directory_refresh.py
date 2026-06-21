@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 import time
-import unicodedata
 from collections import deque
 from dataclasses import dataclass
 from html import unescape
@@ -11,7 +10,8 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
-from unidecode import unidecode
+
+from hushline.text import slugify as _slugify, sort_key as _sort_key
 
 NEWSROOM_DIRECTORY_SOURCE_LABEL = "INN Find Your News directory"
 NEWSROOM_DIRECTORY_SOURCE_URL = "https://findyournews.org/explore/"
@@ -181,16 +181,6 @@ def _get_with_retries(
     if last_error is not None:
         raise last_error
     raise NewsroomDirectoryRefreshError(f"Failed to fetch newsroom source URL: {url}")
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
-
-
-def _slugify(value: str) -> str:
-    normalized = _sort_key(value)
-    return re.sub(r"[^a-z0-9]+", "-", normalized).strip("-")
 
 
 def _normalize_text(value: object) -> str:

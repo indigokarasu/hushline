@@ -10,6 +10,8 @@ from urllib.parse import parse_qsl, urlparse
 import requests
 from unidecode import unidecode
 
+from hushline.text import sort_key as _sort_key
+
 LISTING_URL_FIELDS: tuple[str, str] = ("website", "source_url")
 
 CHAMBERS_PUBLICATION_GROUP_BY_REGION: dict[str, int] = {
@@ -2992,11 +2994,6 @@ def _normalize_string(value: str) -> str:
 
 def _listing_sort_key(row: _NormalizedListing) -> tuple[str, str, str]:
     return (_sort_key(row.id), _sort_key(row.slug), _sort_key(row.name))
-
-
-def _sort_key(value: str) -> str:
-    normalized = unicodedata.normalize("NFKC", value.strip())
-    return unidecode(normalized).casefold()
 
 
 def _slug_base(value: str) -> str:
