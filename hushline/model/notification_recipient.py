@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Optional
 
-from sqlalchemy import ForeignKey, text
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from hushline.config import EncryptedFieldWriteFormat
@@ -32,13 +32,11 @@ class NotificationRecipient(Model):
         db.Boolean,
         nullable=False,
         default=True,
-        server_default=text("true"),
     )
     position: Mapped[int] = mapped_column(
         db.Integer,
         nullable=False,
         default=0,
-        server_default=text("0"),
     )
     _email: Mapped[Optional[str]] = mapped_column("email", db.Text)
     _pgp_key: Mapped[Optional[str]] = mapped_column("pgp_key", db.Text)

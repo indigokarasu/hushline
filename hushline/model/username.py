@@ -113,7 +113,6 @@ class Username(Model):
         db.Boolean,
         nullable=False,
         default=False,
-        server_default=text("false"),
     )
     show_in_directory: Mapped[bool] = mapped_column(default=False)
     bio: Mapped[Optional[str]] = mapped_column(db.Text)
@@ -121,13 +120,11 @@ class Username(Model):
         db.Boolean,
         nullable=False,
         default=False,
-        server_default=text("false"),
     )
     embed_admin_disabled: Mapped[bool] = mapped_column(
         db.Boolean,
         nullable=False,
         default=False,
-        server_default=text("false"),
     )
     embed_allowed_origins: Mapped[list[str]] = mapped_column(
         MutableList.as_mutable(JSONB),
