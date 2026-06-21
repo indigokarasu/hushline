@@ -1877,6 +1877,60 @@ _WYOMING_OFFICIAL_PUBLIC_RECORD_SEED_ROWS: tuple[PublicRecordRow, ...] = (
         "source_url": "https://www.wyomingbar.org/about-us/bar-leadership/",
     },
 )
+_STATE_SEED_ROWS: dict[str, tuple[PublicRecordRow, ...]] = {
+    "AK": _ALASKA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "AL": _ALABAMA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "AR": _ARKANSAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "AZ": _ARIZONA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "CA": _CALIFORNIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "CO": _COLORADO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "CT": _CONNECTICUT_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "DE": _DELAWARE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "FL": _FLORIDA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "GA": _GEORGIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "HI": _HAWAII_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "IA": _IOWA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "ID": _IDAHO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "IL": _ILLINOIS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "IN": _INDIANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "KS": _KANSAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "KY": _KENTUCKY_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "LA": _LOUISIANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MA": _MASSACHUSETTS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MD": _MARYLAND_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "ME": _MAINE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MI": _MICHIGAN_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MN": _MINNESOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MO": _MISSOURI_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MS": _MISSISSIPPI_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "MT": _MONTANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NC": _NORTH_CAROLINA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "ND": _NORTH_DAKOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NE": _NEBRASKA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NH": _NEW_HAMPSHIRE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NJ": _NEW_JERSEY_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NM": _NEW_MEXICO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NV": _NEVADA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "NY": _NEW_YORK_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "OH": _OHIO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "OK": _OKLAHOMA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "OR": _OREGON_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "PA": _PENNSYLVANIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "RI": _RHODE_ISLAND_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "SC": _SOUTH_CAROLINA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "SD": _SOUTH_DAKOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "TN": _TENNESSEE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "TX": _TEXAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "UT": _UTAH_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "VA": _VIRGINIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "VT": _VERMONT_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "WA": _WASHINGTON_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "WI": _WISCONSIN_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "WV": _WEST_VIRGINIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+    "WY": _WYOMING_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
+}
+
+
 
 
 def _discover_seed_rows(
@@ -1921,826 +1975,43 @@ def _discover_seed_rows(
     return discovered_rows
 
 
-def _discover_noop_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del existing_rows, max_new_per_state, timeout_seconds, session
-    return []
 
 
-def _discover_california_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_CALIFORNIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_alaska_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_ALASKA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_alabama_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_ALABAMA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_arkansas_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_ARKANSAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_arizona_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_ARIZONA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_colorado_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_COLORADO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_connecticut_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_CONNECTICUT_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_delaware_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_DELAWARE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_florida_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_FLORIDA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_georgia_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_GEORGIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_hawaii_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_HAWAII_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_idaho_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_IDAHO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_indiana_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_INDIANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_iowa_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_IOWA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_kansas_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_KANSAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_kentucky_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_KENTUCKY_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_louisiana_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_LOUISIANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_massachusetts_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MASSACHUSETTS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_maryland_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MARYLAND_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_maine_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MAINE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_michigan_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MICHIGAN_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_minnesota_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MINNESOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_mississippi_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MISSISSIPPI_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_missouri_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MISSOURI_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_montana_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_MONTANA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_north_carolina_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NORTH_CAROLINA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_north_dakota_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NORTH_DAKOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_nebraska_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEBRASKA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_new_hampshire_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEW_HAMPSHIRE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_new_jersey_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEW_JERSEY_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_new_mexico_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEW_MEXICO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_nevada_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEVADA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_new_york_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_NEW_YORK_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_oklahoma_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_OKLAHOMA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_oregon_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_OREGON_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_pennsylvania_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_PENNSYLVANIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_rhode_island_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_RHODE_ISLAND_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_south_carolina_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_SOUTH_CAROLINA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_south_dakota_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_SOUTH_DAKOTA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_texas_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_TEXAS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_utah_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_UTAH_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_washington_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_WASHINGTON_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_illinois_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_ILLINOIS_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_ohio_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_OHIO_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_tennessee_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_TENNESSEE_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_vermont_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_VERMONT_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_virginia_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_VIRGINIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_west_virginia_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_WEST_VIRGINIA_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_wisconsin_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_WISCONSIN_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
-
-
-def _discover_wyoming_official_public_record_rows(
-    *,
-    existing_rows: Sequence[Mapping[str, object]],
-    max_new_per_state: int,
-    timeout_seconds: float,
-    session: requests.Session | None,
-) -> list[PublicRecordRow]:
-    del timeout_seconds, session
-    return _discover_seed_rows(
-        seed_rows=_WYOMING_OFFICIAL_PUBLIC_RECORD_SEED_ROWS,
-        existing_rows=existing_rows,
-        max_new_per_state=max_new_per_state,
-    )
+def _make_state_discovery_adapter(
+    state_code: str,
+) -> OfficialStateDiscoveryAdapter:
+    def discover(
+        *,
+        existing_rows: Sequence[Mapping[str, object]],
+        max_new_per_state: int,
+        timeout_seconds: float,
+        session: requests.Session | None,
+    ) -> list[PublicRecordRow]:
+        del timeout_seconds, session
+        seed_rows = _STATE_SEED_ROWS.get(state_code)
+        if seed_rows is None:
+            return []
+        return _discover_seed_rows(
+            seed_rows=seed_rows,
+            existing_rows=existing_rows,
+            max_new_per_state=max_new_per_state,
+        )
+
+    return discover
 
 
 _OFFICIAL_US_STATE_DISCOVERY_ADAPTER_OVERRIDES: dict[str, OfficialStateDiscoveryAdapter] = {
-    "AK": _discover_alaska_official_public_record_rows,
-    "AL": _discover_alabama_official_public_record_rows,
-    "AR": _discover_arkansas_official_public_record_rows,
-    "AZ": _discover_arizona_official_public_record_rows,
-    "CA": _discover_california_official_public_record_rows,
-    "CO": _discover_colorado_official_public_record_rows,
-    "CT": _discover_connecticut_official_public_record_rows,
-    "DE": _discover_delaware_official_public_record_rows,
-    "FL": _discover_florida_official_public_record_rows,
-    "GA": _discover_georgia_official_public_record_rows,
-    "HI": _discover_hawaii_official_public_record_rows,
-    "IA": _discover_iowa_official_public_record_rows,
-    "ID": _discover_idaho_official_public_record_rows,
-    "IN": _discover_indiana_official_public_record_rows,
-    "KS": _discover_kansas_official_public_record_rows,
-    "KY": _discover_kentucky_official_public_record_rows,
-    "IL": _discover_illinois_official_public_record_rows,
-    "LA": _discover_louisiana_official_public_record_rows,
-    "MA": _discover_massachusetts_official_public_record_rows,
-    "MD": _discover_maryland_official_public_record_rows,
-    "ME": _discover_maine_official_public_record_rows,
-    "MI": _discover_michigan_official_public_record_rows,
-    "MN": _discover_minnesota_official_public_record_rows,
-    "MO": _discover_missouri_official_public_record_rows,
-    "MS": _discover_mississippi_official_public_record_rows,
-    "MT": _discover_montana_official_public_record_rows,
-    "NC": _discover_north_carolina_official_public_record_rows,
-    "ND": _discover_north_dakota_official_public_record_rows,
-    "NE": _discover_nebraska_official_public_record_rows,
-    "NH": _discover_new_hampshire_official_public_record_rows,
-    "NJ": _discover_new_jersey_official_public_record_rows,
-    "NM": _discover_new_mexico_official_public_record_rows,
-    "NV": _discover_nevada_official_public_record_rows,
-    "NY": _discover_new_york_official_public_record_rows,
-    "OH": _discover_ohio_official_public_record_rows,
-    "OK": _discover_oklahoma_official_public_record_rows,
-    "OR": _discover_oregon_official_public_record_rows,
-    "PA": _discover_pennsylvania_official_public_record_rows,
-    "RI": _discover_rhode_island_official_public_record_rows,
-    "SC": _discover_south_carolina_official_public_record_rows,
-    "SD": _discover_south_dakota_official_public_record_rows,
-    "TN": _discover_tennessee_official_public_record_rows,
-    "TX": _discover_texas_official_public_record_rows,
-    "UT": _discover_utah_official_public_record_rows,
-    "VA": _discover_virginia_official_public_record_rows,
-    "VT": _discover_vermont_official_public_record_rows,
-    "WA": _discover_washington_official_public_record_rows,
-    "WI": _discover_wisconsin_official_public_record_rows,
-    "WV": _discover_west_virginia_official_public_record_rows,
-    "WY": _discover_wyoming_official_public_record_rows,
+    state_code: _make_state_discovery_adapter(state_code)
+    for state_code in _STATE_SEED_ROWS
 }
 
 OFFICIAL_US_STATE_DISCOVERY_ADAPTERS: dict[str, OfficialStateDiscoveryAdapter] = {
     state_code: _OFFICIAL_US_STATE_DISCOVERY_ADAPTER_OVERRIDES.get(
-        state_code, _discover_noop_official_public_record_rows
+        state_code, _make_state_discovery_adapter(state_code)
     )
     for state_code in sorted(US_STATE_CODES)
 }
+
 
 
 def discover_official_us_state_public_record_rows(  # noqa: PLR0913
